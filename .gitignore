@@ -3,6 +3,8 @@
 # dependencies
 node_modules/
 
+.vscode/
+
 # Expo
 .expo/
 dist/
@@ -41,3 +43,8 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Claude Code local config
+.claude/
+AGENTS.md
+CLAUDE.md
