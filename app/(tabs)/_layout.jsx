@@ -17,7 +17,9 @@ export default function TabsLayout() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <AppHeader onOpenSettings={() => router.push("/settings")} />
+      <View style={{ zIndex: 1000, elevation: 1000 }}>
+        <AppHeader onOpenSettings={() => router.push("/settings")} />
+      </View>
 
       <Tabs
         screenOptions={({ route }) => ({
@@ -31,11 +33,19 @@ export default function TabsLayout() {
             height: 130,
             paddingTop: 8,
             paddingBottom: 8,
+            zIndex: 1000,
+            elevation: 1000,
           },
           tabBarLabelStyle: { fontSize: 12, fontFamily: "Poppins_400Regular" },
           tabBarIcon: ({ focused, color }) => {
             const currentIcon = icons[route.name] ?? icons.index;
-            return <Ionicons name={focused ? currentIcon.active : currentIcon.inactive} size={26} color={color} />;
+            return (
+              <Ionicons
+                name={focused ? currentIcon.active : currentIcon.inactive}
+                size={26}
+                color={color}
+              />
+            );
           },
         })}
       >

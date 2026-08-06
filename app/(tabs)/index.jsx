@@ -1,5 +1,27 @@
-import TabPage from "../../components/TabPage";
+import { ScrollView, StyleSheet } from "react-native";
+import LinkInputCard from "../../components/LinkInputCard";
+import { useAppTheme } from "../../hooks/useAppTheme";
 
 export default function HomeScreen() {
-  return <TabPage title="Home" />;
+  const { colors } = useAppTheme();
+
+  return (
+    <ScrollView
+      style={[styles.scroll, { backgroundColor: colors.background }]}
+      contentContainerStyle={styles.content}
+      keyboardShouldPersistTaps="handled"
+    >
+      <LinkInputCard />
+    </ScrollView>
+  );
 }
+
+const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+    zIndex: 1,
+  },
+  content: {
+    paddingBottom: 40,
+  },
+});
