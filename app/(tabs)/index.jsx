@@ -1,5 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import LinkInputCard from "../../components/LinkInputCard";
+import InfoNotice from "../../components/InfoNotice";
 import { useAppTheme } from "../../hooks/useAppTheme";
 
 export default function HomeScreen() {
@@ -12,6 +13,7 @@ export default function HomeScreen() {
       keyboardShouldPersistTaps="handled"
     >
       <LinkInputCard />
+      <InfoNotice />
     </ScrollView>
   );
 }
