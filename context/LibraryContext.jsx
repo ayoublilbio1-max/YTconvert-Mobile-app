@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MOCK_HISTORY } from "../constants/mockHistory";
 
@@ -29,17 +35,29 @@ export function LibraryProvider({ children }) {
 
   useEffect(() => {
     if (!loaded) return;
-    AsyncStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites)).catch(() => {});
+    AsyncStorage.setItem(
+      FAVORITES_STORAGE_KEY,
+      JSON.stringify(favorites),
+    ).catch(() => {});
   }, [favorites, loaded]);
 
-  const isFavorite = useCallback((id) => favorites.some((item) => item.id === id), [favorites]);
+  const isFavorite = useCallback(
+    (id) => favorites.some((item) => item.id === id),
+    [favorites],
+  );
 
   const addToFavorites = useCallback((item) => {
-    setFavorites((prev) => (prev.some((f) => f.id === item.id) ? prev : [item, ...prev]));
+    setFavorites((prev) =>
+      prev.some((f) => f.id === item.id) ? prev : [item, ...prev],
+    );
   }, []);
 
   const removeFromFavorites = useCallback((id) => {
     setFavorites((prev) => prev.filter((item) => item.id !== id));
+  }, []);
+
+  const removeManyFromFavorites = useCallback((ids) => {
+    setFavorites((prev) => prev.filter((item) => !ids.includes(item.id)));
   }, []);
 
   const toggleFavorite = useCallback(
@@ -51,7 +69,7 @@ export function LibraryProvider({ children }) {
       addToFavorites(item);
       return true;
     },
-    [isFavorite, addToFavorites, removeFromFavorites]
+    [isFavorite, addToFavorites, removeFromFavorites],
   );
 
   const addToHistory = useCallback((item) => {
@@ -73,6 +91,7 @@ export function LibraryProvider({ children }) {
         isFavorite,
         addToFavorites,
         removeFromFavorites,
+        removeManyFromFavorites,
         toggleFavorite,
         addToHistory,
         snackbarVisible,

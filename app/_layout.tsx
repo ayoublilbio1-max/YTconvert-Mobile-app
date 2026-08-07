@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
   useFonts,
   Poppins_400Regular,
@@ -46,10 +47,12 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <LibraryProvider>
-        <AppShell />
-      </LibraryProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <LibraryProvider>
+          <AppShell />
+        </LibraryProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
