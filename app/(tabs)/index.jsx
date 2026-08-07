@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import LinkInputCard from "../../components/LinkInputCard";
 import InfoNotice from "../../components/InfoNotice";
+import HowToUseNotice from "../../components/HowToUseNotice";
 import { useAppTheme } from "../../hooks/useAppTheme";
 
 export default function HomeScreen() {
@@ -14,6 +15,7 @@ export default function HomeScreen() {
     >
       <LinkInputCard />
       <InfoNotice />
+      <HowToUseNotice />
     </ScrollView>
   );
 }

@@ -10,8 +10,22 @@ import {
   Poppins_600SemiBold,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
+import { LibraryProvider, useLibrary } from "../context/LibraryContext";
+import Snackbar from "../components/Snackbar";
 
 SplashScreen.preventAutoHideAsync();
+
+function AppShell() {
+  const { snackbarVisible, snackbarMessage, hideSnackbar } = useLibrary();
+
+  return (
+    <>
+      <StatusBar style="auto" />
+      <Stack screenOptions={{ headerShown: false }} />
+      <Snackbar visible={snackbarVisible} message={snackbarMessage} onHide={hideSnackbar} />
+    </>
+  );
+}
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -33,12 +47,9 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
+      <LibraryProvider>
+        <AppShell />
+      </LibraryProvider>
     </SafeAreaProvider>
   );
 }
