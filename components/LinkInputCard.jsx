@@ -3,6 +3,7 @@ import { View, Text, TextInput, Pressable, StyleSheet, Platform } from "react-na
 import * as Clipboard from "expo-clipboard";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAppTheme } from "../hooks/useAppTheme";
+import ConversionDemoModal from "./ConversionDemoModal";
 
 const isValidYouTubeUrl = (value) => {
   const normalized = value.trim().toLowerCase();
@@ -14,6 +15,7 @@ export default function LinkInputCard() {
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
   const [format, setFormat] = useState("mp3"); // "mp3" | "mp4"
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handlePasteFromClipboard = async () => {
     try {
@@ -47,8 +49,9 @@ export default function LinkInputCard() {
   };
 
   const handleSubmit = () => {
-    validate();
-    // conversion logic comes later, once backend exists
+    if (validate()) {
+      setModalVisible(true);
+    }
   };
 
   const buttonLabel = format === "mp3" ? "Get MP3" : "Get MP4";
@@ -122,6 +125,12 @@ export default function LinkInputCard() {
           </Text>
         </Pressable>
       )}
+
+      <ConversionDemoModal
+        visible={modalVisible}
+        format={format}
+        onClose={() => setModalVisible(false)}
+      />
     </View>
   );
 }
