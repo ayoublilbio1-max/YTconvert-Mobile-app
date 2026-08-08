@@ -76,6 +76,10 @@ export function LibraryProvider({ children }) {
     setHistory((prev) => [item, ...prev]);
   }, []);
 
+  const clearHistory = useCallback(() => {
+    setHistory([]);
+  }, []);
+
   const showSnackbar = useCallback((message) => {
     setSnackbarMessage(message);
     setSnackbarVisible(true);
@@ -94,6 +98,7 @@ export function LibraryProvider({ children }) {
         removeManyFromFavorites,
         toggleFavorite,
         addToHistory,
+        clearHistory,
         snackbarVisible,
         snackbarMessage,
         showSnackbar,

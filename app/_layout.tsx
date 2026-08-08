@@ -12,6 +12,7 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import { LibraryProvider, useLibrary } from "../context/LibraryContext";
+import { SettingsProvider } from "../context/SettingsContext";
 import Snackbar from "../components/Snackbar";
 
 SplashScreen.preventAutoHideAsync();
@@ -49,9 +50,11 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <LibraryProvider>
-          <AppShell />
-        </LibraryProvider>
+        <SettingsProvider>
+          <LibraryProvider>
+            <AppShell />
+          </LibraryProvider>
+        </SettingsProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

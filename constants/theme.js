@@ -9,6 +9,7 @@ export const Colors = {
     tabInactive: "#8a8b91",
     tint: "#1598ff",
     danger: "#e5484d",
+    success: "#16a34a",
   },
   dark: {
     background: "#0b0c0f",
@@ -20,5 +21,6 @@ export const Colors = {
     tabInactive: "#92939a",
     tint: "#1598ff",
     danger: "#ff6b6b",
+    success: "#4ade80",
   },
 };
